@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, Navigate, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   LayoutDashboard,
@@ -42,6 +42,18 @@ const menuItemVariants = {
 
 export default function DashboardLayout() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const isLoggedIn = localStorage.getItem("adminLoggedIn");
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("adminLoggedIn");
+    navigate("/login");
+  };
 
   return (
     <div className="flex h-screen bg-slate-950 text-slate-100 overflow-hidden ambient-bg">
@@ -72,7 +84,11 @@ export default function DashboardLayout() {
             <Shirt className="h-7 w-7 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
             <div className="absolute inset-0 h-7 w-7 bg-emerald-400/20 rounded-full blur-md" />
           </motion.div>
-          <span className="font-bold text-lg gradient-text">FashionHub AI</span>
+
+          <span className="font-bold text-lg gradient-text">
+            FashionHub AI
+          </span>
+
           <Zap className="h-3 w-3 text-emerald-400 ml-auto animate-pulse" />
         </motion.div>
 
@@ -81,6 +97,7 @@ export default function DashboardLayout() {
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
+
             return (
               <motion.div key={item.path} variants={menuItemVariants}>
                 <Link
@@ -91,7 +108,6 @@ export default function DashboardLayout() {
                       : "text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
                   }`}
                 >
-                  {/* Active background indicator */}
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
@@ -103,13 +119,21 @@ export default function DashboardLayout() {
                       }}
                     />
                   )}
+
                   <Icon className="relative z-10 h-5 w-5" />
                   <span className="relative z-10">{item.name}</span>
+
                   {isActive && (
                     <motion.div
                       className="absolute right-3 h-1.5 w-1.5 rounded-full bg-emerald-400"
-                      animate={{ scale: [1, 1.4, 1], opacity: [1, 0.7, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                      animate={{
+                        scale: [1, 1.4, 1],
+                        opacity: [1, 0.7, 1],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                      }}
                     />
                   )}
                 </Link>
@@ -130,6 +154,7 @@ export default function DashboardLayout() {
                 System Online
               </span>
             </div>
+
             <div className="text-[10px] text-slate-500">
               AI Engine v2.4 • All services operational
             </div>
@@ -137,28 +162,47 @@ export default function DashboardLayout() {
         </motion.div>
       </motion.aside>
 
-      {/* Main Content Area */}
+      {/* Main Content */}
       <main className="relative z-10 flex-1 overflow-y-auto custom-scrollbar">
         {/* Header */}
         <motion.header
           className="h-16 border-b border-slate-800/40 glass-panel backdrop-blur-xl flex items-center px-8 justify-between sticky top-0 z-20"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.3 }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
+            delay: 0.3,
+          }}
         >
           <div className="flex items-center gap-3">
             <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-xs font-bold text-slate-950">
               A
             </div>
+
             <div>
-              <div className="text-sm font-medium text-white">Welcome back, Admin</div>
-              <div className="text-[10px] text-slate-500">FashionHub Control Center</div>
+              <div className="text-sm font-medium text-white">
+                Welcome back, Admin
+              </div>
+
+              <div className="text-[10px] text-slate-500">
+                FashionHub Control Center
+              </div>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+
+          <div className="flex items-center gap-3">
             <span className="px-2.5 py-1 text-[10px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-lg">
               Live Mode
             </span>
+
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-sm transition"
+            >
+              Logout
+            </button>
           </div>
         </motion.header>
 
