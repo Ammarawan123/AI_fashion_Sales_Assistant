@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
+
 import DashboardLayout from "./layouts/DashboardLayout";
 import DashboardHome from "./pages/DashboardHome";
 import ProductManagement from "./pages/ProductManagement";
 import OrderManagement from "./pages/OrderManagement";
 import ChatSimulation from "./pages/ChatSimulation";
+import AdminLogin from "./pages/AdminLogin";
 import LoadingIntro from "./components/LoadingIntro";
 
 function AnimatedRoutes() {
@@ -14,6 +16,10 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
+        {/* Admin Login */}
+        <Route path="/login" element={<AdminLogin />} />
+
+        {/* Dashboard */}
         <Route path="/" element={<DashboardLayout />}>
           <Route index element={<DashboardHome />} />
           <Route path="products" element={<ProductManagement />} />
@@ -35,6 +41,7 @@ export default function App() {
           <LoadingIntro onComplete={() => setShowIntro(false)} />
         )}
       </AnimatePresence>
+
       <BrowserRouter>
         <AnimatedRoutes />
       </BrowserRouter>
