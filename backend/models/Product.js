@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
@@ -17,6 +16,10 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Price is required"],
       min: [0, "Price cannot be negative"],
+    },
+    description: {
+      type: String,
+      trim: true,
     },
     sizes: {
       type: [String],
