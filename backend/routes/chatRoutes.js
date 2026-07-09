@@ -1,30 +1,21 @@
 const express = require("express");
 const router = express.Router();
+const { getChatResponse } = require("../services/aiChatService");
 
-// SIMPLE CHAT LOGIC (NO AI API NEEDED)
+router.post("/", async (req, res) => {
+  try {
+    const { message, sessionId } = req.body;
 
-router.post("/", (req, res) => {
-  const message = req.body.message.toLowerCase();
+    if (!message || typeof message !== "string" || !message.trim()) {
+      return res.status(400).json({ message: "Message is required" });
+    }
 
-  let reply = "Sorry, I didn't understand that.";
-
-  if (message.includes("hi") || message.includes("hello")) {
-    reply = "Hello! 👋 How can I help you with our products?";
+    const result = await getChatResponse(message, sessionId);
+    res.json(result);
+  } catch (error) {
+    console.error("Chat route failed:", error.message);
+    res.status(500).json({ message: "Something went wrong while processing your message" });
   }
-
-  if (message.includes("price")) {
-    reply = "Our products start from Rs 1500 and go up to Rs 5000.";
-  }
-
-  if (message.includes("delivery")) {
-    reply = "Delivery takes 3–5 working days.";
-  }
-
-  if (message.includes("order")) {
-    reply = "You can place an order by sending product name and quantity.";
-  }
-
-  res.json({ reply });
 });
 
 module.exports = router;
