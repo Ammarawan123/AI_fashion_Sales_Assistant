@@ -73,46 +73,19 @@ export default function ChatSimulation() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
+  // Suggested queries shown as quick-click buttons; actual replies now come from the real backend
   const simulationScenarios = [
-    {
-      query: "I need a black dress for Eid",
-      intent: "Product Search",
-      sentiment: "Interested Buyer",
-      response:
-        "I found these options for you:\n\n🛍️ *Black Embroidered Maxi*\nPrice: Rs 4,999\n\n🛍️ *Black Chiffon Dress*\nPrice: Rs 5,499\n\nWould you like to see pictures?",
-      isRecommendation: true,
-      products: [
-        {
-          name: "Black Embroidered Maxi",
-          price: "Rs 4,999",
-          img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=150",
-        },
-        {
-          name: "Black Chiffon Dress",
-          price: "Rs 5,499",
-          img: "https://images.unsplash.com/photo-1539008835657-9e8e81839211?w=150",
-        },
-      ],
-    },
-    {
-      query: "Price?",
-      intent: "Price Inquiry",
-      sentiment: "Interested Buyer",
-      response:
-        "Our summer collection starts from Rs. 2,499 only! We currently have a flat 10% off sale on selected items. Let me know which product you like!",
-      isRecommendation: false,
-    },
-    {
-      query: "Track my order",
-      intent: "Order Tracking",
-      sentiment: "Neutral",
-      response:
-        "Sure, please provide your 6-digit Order ID or Tracking Number so I can check the status from our system.",
-      isRecommendation: false,
-    },
+    { query: "I need a black dress for Eid" },
+    { query: "What's your delivery charges?" },
+    { query: "Track my order" },
   ];
 
-  const handleSend = (textToSend) => {
+  // Fixed per browser tab so LangChain memory on the backend stays tied to this chat session
+  const sessionIdRef = useRef(
+    `sim-${Math.random().toString(36).slice(2)}-${Date.now()}`
+  );
+
+  const handleSend = async (textToSend) => {
     const text = textToSend || inputText;
     if (!text.trim()) return;
 
@@ -121,35 +94,38 @@ export default function ChatSimulation() {
     setInputText("");
     setIsTyping(true);
 
-    const matchedScenario = simulationScenarios.find(
-      (s) => s.query.toLowerCase() === text.toLowerCase()
-    );
+    try {
+      const res = await fetch("http://localhost:5000/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, sessionId: sessionIdRef.current }),
+      });
 
-    setTimeout(() => {
+      const data = await res.json();
+
       setIsTyping(false);
-      if (matchedScenario) {
-        setActiveIntent(matchedScenario.intent);
-        setActiveSentiment(matchedScenario.sentiment);
-        const aiMsg = {
-          id: Date.now() + 1,
-          sender: "ai",
-          text: matchedScenario.response,
-          type: matchedScenario.isRecommendation ? "recommendation" : "text",
-          products: matchedScenario.products,
-        };
-        setMessages((prev) => [...prev, aiMsg]);
-      } else {
-        setActiveIntent("General Query");
-        setActiveSentiment("Neutral");
-        const aiMsg = {
-          id: Date.now() + 1,
-          sender: "ai",
-          text: `Thank you for your message! "${text}". Our team or AI will respond to you shortly according to the brand catalog.`,
-          type: "text",
-        };
-        setMessages((prev) => [...prev, aiMsg]);
-      }
-    }, 1200);
+      setActiveIntent(data.intent || "Unknown");
+      setActiveSentiment(data.sentiment || "Neutral");
+
+      const hasProducts = data.recommendedProducts && data.recommendedProducts.length > 0;
+      const aiMsg = {
+        id: Date.now() + 1,
+        sender: "ai",
+        text: data.reply,
+        type: hasProducts ? "recommendation" : "text",
+        products: hasProducts ? data.recommendedProducts : undefined,
+      };
+      setMessages((prev) => [...prev, aiMsg]);
+    } catch (error) {
+      setIsTyping(false);
+      const aiMsg = {
+        id: Date.now() + 1,
+        sender: "ai",
+        text: "Sorry, I'm having trouble connecting right now. Please try again in a moment.",
+        type: "text",
+      };
+      setMessages((prev) => [...prev, aiMsg]);
+    }
   };
 
   return (
@@ -306,32 +282,40 @@ export default function ChatSimulation() {
                       {msg.text}
                     </div>
 
-                    {/* Recommendation Card UI */}
+                    {/* Recommendation Card UI - fields match the real Product model returned by /api/chat */}
                     {msg.type === "recommendation" && msg.products && (
                       <div className="grid grid-cols-2 gap-3 pt-1">
                         {msg.products.map((prod, pIdx) => (
                           <motion.div
-                            key={pIdx}
+                            key={prod._id || pIdx}
                             className="glass-panel rounded-xl overflow-hidden shadow-lg"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 + pIdx * 0.15 }}
                             whileHover={{ scale: 1.03, y: -2 }}
                           >
-                            <div
-                              className="h-24 bg-slate-700 bg-cover bg-center"
-                              style={{
-                                backgroundImage: `url(${prod.img})`,
-                              }}
-                            />
+                            {prod.images && prod.images[0] && (
+                              <div
+                                className="h-24 bg-slate-700 bg-cover bg-center"
+                                style={{ backgroundImage: `url(${prod.images[0]})` }}
+                              />
+                            )}
                             <div className="p-3 space-y-1.5">
                               <div className="text-xs font-bold text-white truncate">
-                                {prod.name}
+                                {prod.productName}
                               </div>
                               <div className="text-[11px] text-emerald-400 font-semibold font-mono">
-                                {prod.price}
+                                Rs {prod.price}
+                              </div>
+                              <div className="text-[10px] text-slate-400">
+                                {prod.sizes?.join(", ")}
                               </div>
                               <motion.button
+                                onClick={() =>
+                                  handleSend(
+                                    `I'll take the ${prod.productName}`
+                                  )
+                                }
                                 className="w-full text-[10px] bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-slate-950 font-bold py-1.5 rounded-lg transition-colors mt-1 cursor-pointer"
                                 whileTap={{ scale: 0.95 }}
                               >
