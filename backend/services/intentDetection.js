@@ -38,7 +38,6 @@ async function detectIntent(message) {
 
     const rawLabel = response.choices?.[0]?.message?.content?.trim();
 
-    // Only accept labels that match our known intent list
     const matchedIntent = VALID_INTENTS.find(
       (intent) => intent.toLowerCase() === rawLabel?.toLowerCase()
     );
