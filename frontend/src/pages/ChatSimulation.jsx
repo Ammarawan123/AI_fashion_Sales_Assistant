@@ -73,14 +73,12 @@ export default function ChatSimulation() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  // Suggested queries shown as quick-click buttons; actual replies now come from the real backend
   const simulationScenarios = [
     { query: "I need a black dress for Eid" },
     { query: "What's your delivery charges?" },
     { query: "Track my order" },
   ];
 
-  // Fixed per browser tab so LangChain memory on the backend stays tied to this chat session
   const sessionIdRef = useRef(
     `sim-${Math.random().toString(36).slice(2)}-${Date.now()}`
   );
@@ -141,9 +139,7 @@ export default function ChatSimulation() {
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-        {/* Left Side: Simulation Dashboard */}
         <motion.div className="space-y-6 lg:col-span-1" variants={staggerItem}>
-          {/* Scenario Buttons */}
           <div className="glass-panel rounded-2xl p-5 space-y-4 neon-border">
             <h2 className="text-sm font-semibold text-slate-300 flex items-center gap-2">
               <AlertCircle className="h-4 w-4 text-emerald-400" />
@@ -170,7 +166,6 @@ export default function ChatSimulation() {
             </div>
           </div>
 
-          {/* AI Metadata Trackers */}
           <div className="glass-panel rounded-2xl p-5 space-y-4 neon-border">
             <h2 className="text-sm font-semibold text-slate-300 flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-teal-400" />
@@ -208,12 +203,10 @@ export default function ChatSimulation() {
           </div>
         </motion.div>
 
-        {/* Right Side: Chat Window */}
         <motion.div
           className="lg:col-span-2 glass-panel rounded-2xl h-[580px] flex flex-col overflow-hidden neon-border-strong"
           variants={staggerItem}
         >
-          {/* Chat Header */}
           <div className="bg-slate-900/60 backdrop-blur-xl border-b border-slate-800/40 p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="relative">
@@ -243,7 +236,6 @@ export default function ChatSimulation() {
             </div>
           </div>
 
-          {/* Chat Area */}
           <div className="flex-1 p-5 overflow-y-auto space-y-4 custom-scrollbar bg-slate-950/40">
             <AnimatePresence>
               {messages.map((msg) => (
@@ -282,7 +274,6 @@ export default function ChatSimulation() {
                       {msg.text}
                     </div>
 
-                    {/* Recommendation Card UI - fields match the real Product model returned by /api/chat */}
                     {msg.type === "recommendation" && msg.products && (
                       <div className="grid grid-cols-2 gap-3 pt-1">
                         {msg.products.map((prod, pIdx) => (
@@ -334,7 +325,6 @@ export default function ChatSimulation() {
             <div ref={chatEndRef} />
           </div>
 
-          {/* Chat Input Footer */}
           <div className="p-4 border-t border-slate-800/40 bg-slate-900/60 backdrop-blur-xl flex gap-2.5">
             <input
               type="text"
