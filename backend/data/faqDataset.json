@@ -1,0 +1,77 @@
+[
+  {
+    "id": "faq001",
+    "question": "What are your delivery charges?",
+    "answer": "Delivery charges are Rs 200 within major cities and Rs 300 for other areas. Free delivery on orders above Rs 5000."
+  },
+  {
+    "id": "faq002",
+    "question": "How long does delivery take?",
+    "answer": "Delivery usually takes 3-5 business days within Pakistan. Major cities like Lahore, Karachi, and Islamabad may receive orders in 2-3 days."
+  },
+  {
+    "id": "faq003",
+    "question": "Do you deliver to Islamabad?",
+    "answer": "Yes, we deliver to Islamabad and all major cities across Pakistan."
+  },
+  {
+    "id": "faq004",
+    "question": "Can I exchange a product?",
+    "answer": "Yes, exchanges are accepted within 7 days of delivery, provided the item is unused and has its original tags."
+  },
+  {
+    "id": "faq005",
+    "question": "What is your return policy?",
+    "answer": "You can return any item within 7 days of delivery for a full refund, as long as it is unworn and in original condition."
+  },
+  {
+    "id": "faq006",
+    "question": "What is the refund process?",
+    "answer": "Once we receive your returned item and confirm its condition, your refund is processed within 5-7 business days to your original payment method."
+  },
+  {
+    "id": "faq007",
+    "question": "I received a damaged item, what do I do?",
+    "answer": "We're sorry to hear that. Please share your order ID and a photo of the damaged item, and we'll arrange a free replacement or refund."
+  },
+  {
+    "id": "faq008",
+    "question": "Do you have a size chart?",
+    "answer": "Yes, our size chart is available on each product page. Let us know the item and we can share exact measurements."
+  },
+  {
+    "id": "faq009",
+    "question": "Which size should I buy?",
+    "answer": "It depends on your measurements and the fit you prefer. Share your usual size or measurements and we'll recommend the best fit."
+  },
+  {
+    "id": "faq010",
+    "question": "Is there a discount or sale going on?",
+    "answer": "Yes, select items currently have discounts ranging from 5% to 20%. Ask us about a specific product and we'll confirm the current price."
+  },
+  {
+    "id": "faq011",
+    "question": "How can I place an order?",
+    "answer": "Simply tell us which product and size you'd like, share your delivery address, and we'll confirm your order right here in chat."
+  },
+  {
+    "id": "faq012",
+    "question": "How do I track my order?",
+    "answer": "Share your order ID or tracking number and we'll give you the latest status of your delivery."
+  },
+  {
+    "id": "faq013",
+    "question": "What payment methods do you accept?",
+    "answer": "We accept Cash on Delivery (COD) as well as bank transfer and online payment options."
+  },
+  {
+    "id": "faq014",
+    "question": "Do you have same day delivery?",
+    "answer": "Same day delivery is available in Lahore and Karachi for orders placed before 12 PM, subject to availability."
+  },
+  {
+    "id": "faq015",
+    "question": "What is your cheapest product?",
+    "answer": "Our prices start from around Rs 899 for accessories. Let us know your budget and category, and we'll show you the best options."
+  }
+]

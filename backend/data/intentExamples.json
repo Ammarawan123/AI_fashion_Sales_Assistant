@@ -1,0 +1,114 @@
+[
+  {
+    "intent": "Greeting",
+    "examples": [
+      "Hi",
+      "Hello",
+      "Hey there",
+      "Asalam o alaikum",
+      "Good morning",
+      "Is anyone there?",
+      "Salam"
+    ]
+  },
+  {
+    "intent": "Product Search",
+    "examples": [
+      "Show me black dresses",
+      "I need a black dress for Eid",
+      "Do you have summer collection?",
+      "Show me winter collection",
+      "I want formal dresses",
+      "Show casual wear",
+      "Do you have men's shirts?",
+      "Show me women's handbags",
+      "Any shoes under Rs 3000?",
+      "What's trending right now?",
+      "What are your best selling products?"
+    ]
+  },
+  {
+    "intent": "Size Inquiry",
+    "examples": [
+      "Do you have medium size?",
+      "Is XL available?",
+      "Which size should I buy?",
+      "Can I see the size chart?",
+      "What sizes do you have?",
+      "Is this available in large?"
+    ]
+  },
+  {
+    "intent": "Color Inquiry",
+    "examples": [
+      "What colors are available?",
+      "Do you have this in black?",
+      "Show me red dresses",
+      "Is beige available in this?",
+      "What color options does this come in?"
+    ]
+  },
+  {
+    "intent": "Discount Inquiry",
+    "examples": [
+      "What's the price?",
+      "Any discount available?",
+      "Is there a sale right now?",
+      "What's your cheapest item?",
+      "Show me products under Rs 2000",
+      "Show me products under Rs 5000"
+    ]
+  },
+  {
+    "intent": "Delivery Inquiry",
+    "examples": [
+      "What are the delivery charges?",
+      "Do you offer same day delivery?",
+      "Do you deliver to Islamabad?",
+      "Do you deliver to Lahore?",
+      "How many days for delivery?",
+      "How long does shipping take?"
+    ]
+  },
+  {
+    "intent": "Return Request",
+    "examples": [
+      "What's your return policy?",
+      "Can I exchange this item?",
+      "How does the refund process work?",
+      "I received a damaged item",
+      "This product arrived broken",
+      "I want to return this order"
+    ]
+  },
+  {
+    "intent": "Order Tracking",
+    "examples": [
+      "Track my order",
+      "Where is my parcel?",
+      "What's my order status?",
+      "Can you give me my tracking ID?",
+      "Has my order shipped yet?"
+    ]
+  },
+  {
+    "intent": "Order Placement",
+    "examples": [
+      "How can I place an order?",
+      "I want to buy this",
+      "I'll take the black one in medium",
+      "Please confirm my order",
+      "I'd like to order this dress"
+    ]
+  },
+  {
+    "intent": "Complaint",
+    "examples": [
+      "This is not what I ordered",
+      "I'm not happy with this product",
+      "My order is very late",
+      "This is unacceptable service",
+      "I want to speak to someone about a problem"
+    ]
+  }
+]

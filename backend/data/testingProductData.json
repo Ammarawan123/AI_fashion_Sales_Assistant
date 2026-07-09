@@ -1,0 +1,86 @@
+[
+  {
+    "note": "Out of stock item — tests 'not available' AI response",
+    "productName": "Ivory Lace Wedding Gown",
+    "category": "Women's Dresses",
+    "price": 12999,
+    "description": "Elegant ivory lace gown for wedding events.",
+    "sizes": ["S", "M", "L"],
+    "colors": ["Ivory"],
+    "stock": 0,
+    "discount": 0,
+    "rating": 4.9
+  },
+  {
+    "note": "Very high discount item — tests discount/sale inquiry response",
+    "productName": "Clearance Denim Jacket",
+    "category": "Men's Jackets",
+    "price": 4999,
+    "description": "Denim jacket on clearance sale.",
+    "sizes": ["M", "L"],
+    "colors": ["Blue"],
+    "stock": 5,
+    "discount": 50,
+    "rating": 3.8
+  },
+  {
+    "note": "Single size only — tests size inquiry edge case",
+    "productName": "One Size Printed Scarf",
+    "category": "Women's Accessories",
+    "price": 799,
+    "description": "Lightweight printed scarf, one size fits all.",
+    "sizes": ["Free Size"],
+    "colors": ["Multicolor"],
+    "stock": 22,
+    "discount": 0,
+    "rating": 4.1
+  },
+  {
+    "note": "Lowest priced item — tests 'cheapest product' / budget queries",
+    "productName": "Mini Keychain Pouch",
+    "category": "Accessories",
+    "price": 199,
+    "description": "Small keychain pouch, great for essentials.",
+    "sizes": ["Free Size"],
+    "colors": ["Black", "Pink"],
+    "stock": 80,
+    "discount": 0,
+    "rating": 3.7
+  },
+  {
+    "note": "Highest priced item — tests premium/luxury product queries",
+    "productName": "Diamond Stitched Sherwani",
+    "category": "Men's Formal Wear",
+    "price": 27999,
+    "description": "Premium hand-stitched sherwani for weddings and formal events.",
+    "sizes": ["M", "L", "XL"],
+    "colors": ["Gold", "Cream"],
+    "stock": 4,
+    "discount": 0,
+    "rating": 4.9
+  },
+  {
+    "note": "Low stock item — tests urgency/limited stock messaging",
+    "productName": "Rose Gold Ankle Strap Heels",
+    "category": "Shoes",
+    "price": 4499,
+    "description": "Elegant rose gold heels with ankle strap detail.",
+    "sizes": ["36", "37", "38"],
+    "colors": ["Rose Gold"],
+    "stock": 2,
+    "discount": 10,
+    "rating": 4.5
+  },
+  {
+    "note": "Zero rating item — tests handling of new/unrated products",
+    "productName": "New Arrival Linen Shirt",
+    "category": "Men's Shirts",
+    "price": 2599,
+    "description": "Just-launched breathable linen shirt, not yet reviewed.",
+    "sizes": ["M", "L", "XL"],
+    "colors": ["Sky Blue"],
+    "stock": 30,
+    "discount": 0,
+    "rating": 0
+  }
+]
