@@ -25,6 +25,15 @@ const sampleProducts = [
   { productName: "Leather Belt", category: "Accessories", price: 1499, description: "Genuine leather belt with metal buckle.", images: ["https://placehold.co/400x500/3b2f2f/ffffff?text=Leather+Belt"], sizes: ["Free Size"], colors: ["Black", "Brown"], stock: 50, discount: 0, rating: 4.4 },
   { productName: "Printed Chiffon Scarf", category: "Women's Accessories", price: 899, description: "Soft printed chiffon scarf.", images: ["https://placehold.co/400x500/da70d6/ffffff?text=Chiffon+Scarf"], sizes: ["Free Size"], colors: ["Multicolor"], stock: 60, discount: 0, rating: 4.2 },
   { productName: "Basic Hair Clip Set", category: "Accessories", price: 299, description: "Set of 3 basic hair clips.", images: ["https://placehold.co/400x500/ffa500/333333?text=Hair+Clip+Set"], sizes: ["Free Size"], colors: ["Assorted"], stock: 100, discount: 0, rating: 3.9 },
+
+  // Edge-case test products from testingProductData.json
+  { productName: "Ivory Lace Wedding Gown", category: "Women's Dresses", price: 12999, description: "Elegant ivory lace gown for wedding events.", images: ["https://placehold.co/400x500/fffff0/333333?text=Ivory+Lace+Gown"], sizes: ["S", "M", "L"], colors: ["Ivory"], stock: 0, discount: 0, rating: 4.9 }, 
+  { productName: "Clearance Denim Jacket", category: "Men's Jackets", price: 4999, description: "Denim jacket on clearance sale.", images: ["https://placehold.co/400x500/4a69bd/ffffff?text=Clearance+Denim+Jacket"], sizes: ["M", "L"], colors: ["Blue"], stock: 5, discount: 50, rating: 3.8 }, 
+  { productName: "One Size Printed Scarf", category: "Women's Accessories", price: 799, description: "Lightweight printed scarf, one size fits all.", images: ["https://placehold.co/400x500/ff69b4/ffffff?text=Printed+Scarf"], sizes: ["Free Size"], colors: ["Multicolor"], stock: 22, discount: 0, rating: 4.1 }, 
+  { productName: "Mini Keychain Pouch", category: "Accessories", price: 199, description: "Small keychain pouch, great for essentials.", images: ["https://placehold.co/400x500/333333/ffffff?text=Keychain+Pouch"], sizes: ["Free Size"], colors: ["Black", "Pink"], stock: 80, discount: 0, rating: 3.7 }, 
+  { productName: "Diamond Stitched Sherwani", category: "Men's Formal Wear", price: 27999, description: "Premium hand-stitched sherwani for weddings and formal events.", images: ["https://placehold.co/400x500/ffd700/333333?text=Diamond+Sherwani"], sizes: ["M", "L", "XL"], colors: ["Gold", "Cream"], stock: 4, discount: 0, rating: 4.9 },
+  { productName: "Rose Gold Ankle Strap Heels", category: "Shoes", price: 4499, description: "Elegant rose gold heels with ankle strap detail.", images: ["https://placehold.co/400x500/b76e79/ffffff?text=Rose+Gold+Heels"], sizes: ["36", "37", "38"], colors: ["Rose Gold"], stock: 2, discount: 10, rating: 4.5 }, 
+  { productName: "New Arrival Linen Shirt", category: "Men's Shirts", price: 2599, description: "Just-launched breathable linen shirt, not yet reviewed.", images: ["https://placehold.co/400x500/87ceeb/333333?text=Linen+Shirt"], sizes: ["M", "L", "XL"], colors: ["Sky Blue"], stock: 30, discount: 0, rating: 0 },
 ];
 
 const sampleCustomers = [
