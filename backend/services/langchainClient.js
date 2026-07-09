@@ -16,7 +16,6 @@ if (process.env.OPENAI_API_KEY) {
   console.error("OPENAI_API_KEY is missing in .env — LangChain reply generation will be disabled.");
 }
 
-// Per-session memory, capped so long chats don't grow the prompt indefinitely
 const sessionHistories = new Map();
 const MAX_HISTORY_MESSAGES = 10;
 
@@ -60,7 +59,6 @@ function buildSystemPrompt({ faqAnswer, recommendedProducts, sentiment }) {
   return prompt;
 }
 
-// Returns the generated reply, or null on any failure/unavailability so the caller can fall back
 async function generateReply({ sessionId, message, faqAnswer, recommendedProducts, sentiment }) {
   if (!chatModel) return null;
 
